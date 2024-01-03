@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: Kanbaniser
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/kanbaniserdb?createDatabaseIfNotExist=true
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
