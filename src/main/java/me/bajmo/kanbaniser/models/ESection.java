@@ -1,16 +1,16 @@
-package me.bajmo.kanbaniser.utils;
+package me.bajmo.kanbaniser.models;
 
 import lombok.Getter;
 
 @Getter
-public enum Section {
+public enum ESection {
     ToDo("To do"),
     Doing("Doing"),
     Done("Done");
 
     private final String value;
 
-    Section(String value) {
+    ESection(String value) {
         this.value = value;
     }
 

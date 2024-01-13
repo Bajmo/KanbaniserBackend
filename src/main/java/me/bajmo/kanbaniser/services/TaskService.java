@@ -34,7 +34,7 @@ public class TaskService {
         task.setDescription(updatedTask.getDescription());
         task.setCreatedAt(updatedTask.getCreatedAt());
         task.setCreatedBy(updatedTask.getCreatedBy());
-        task.setSection(updatedTask.getSection());
+        task.setESection(updatedTask.getESection());
         taskRepository.save(task);
     }
 

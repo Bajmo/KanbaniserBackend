@@ -3,12 +3,13 @@ package me.bajmo.kanbaniser.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "boards")
 public class Board {
 
     @Id

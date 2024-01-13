@@ -2,7 +2,7 @@ package me.bajmo.kanbaniser.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import me.bajmo.kanbaniser.utils.Section;
+import me.bajmo.kanbaniser.models.ESection;
 
 import java.util.Date;
 
@@ -10,6 +10,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "tasks")
 public class Task {
 
     @Id
@@ -22,10 +23,9 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "createdBy_id", nullable = false)
     private User createdBy;
-    @Enumerated(EnumType.STRING)
     @ManyToOne
-    @JoinColumn(name = "board_id") // Adjust the column name as needed
+    @JoinColumn(name = "board_id")
     private Board board;
-    private Section section;
+    private ESection ESection;
 
 }
