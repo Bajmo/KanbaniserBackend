@@ -3,6 +3,7 @@ package me.bajmo.kanbaniser.security.jwt;
 import java.security.Key;
 import java.util.Date;
 
+import io.jsonwebtoken.io.Decoders;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 
 import io.jsonwebtoken.*;
-import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 @Component
@@ -59,18 +59,25 @@ public class JwtUtils {
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
     }
 
-    public boolean validateJwtToken(String authToken) {
+    public Boolean validateJwtToken(String authToken) {
         try {
-            Jwts.parserBuilder().setSigningKey(key()).build().parse(authToken);
+            Jwts.parserBuilder().setSigningKey(key()).build().parseClaimsJws(authToken);
             return true;
+        } catch (SignatureException e) {
+            logger.error("Invalid JWT signature: {}", e.getMessage());
+            logger.error("Invalid JWT token: {}", authToken);
         } catch (MalformedJwtException e) {
-            logger.error("Invalid JWT token: {}", e.getMessage());
+            logger.error("Malformed JWT token: {}", e.getMessage());
+            logger.error("Malformed JWT token: {}", authToken);
         } catch (ExpiredJwtException e) {
-            logger.error("JWT token is expired: {}", e.getMessage());
+            logger.error("Expired JWT token: {}", e.getMessage());
+            logger.error("Expired JWT token: {}", authToken);
         } catch (UnsupportedJwtException e) {
-            logger.error("JWT token is unsupported: {}", e.getMessage());
+            logger.error("Unsupported JWT token: {}", e.getMessage());
+            logger.error("Unsupported JWT token: {}", authToken);
         } catch (IllegalArgumentException e) {
             logger.error("JWT claims string is empty: {}", e.getMessage());
+            logger.error("JWT claims string is empty: {}", authToken);
         }
 
         return false;

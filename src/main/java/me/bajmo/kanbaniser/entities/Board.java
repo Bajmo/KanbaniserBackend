@@ -17,7 +17,7 @@ public class Board {
     private Long id;
     private String title;
     private String description;
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks;
 
 }

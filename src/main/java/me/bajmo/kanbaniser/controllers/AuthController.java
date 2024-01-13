@@ -82,9 +82,14 @@ public class AuthController {
                     .body(new MessageResponse("Error: Email is already in use!"));
         }
         // Create new user's account
-        User user = new User(signUpRequest.getUsername(),
+        User user = new User(
+                signUpRequest.getFirstName(),
+                signUpRequest.getLastName(),
+                signUpRequest.getPhoneNumber(),
+                signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+                encoder.encode(signUpRequest.getPassword()),
+                signUpRequest.getImage());
         List<String> strRoles = signUpRequest.getRoles();
         List<Role> roles = new ArrayList<>();
         if (strRoles == null) {

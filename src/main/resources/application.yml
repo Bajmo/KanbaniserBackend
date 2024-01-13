@@ -6,7 +6,7 @@ spring:
     name: Kanbaniser
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/kanbaniserdb?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/kanbaniserdb?createDatabaseIfNotExist=true&sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false
     username: root
     password:
   jpa:
@@ -20,5 +20,5 @@ spring:
 kanbaniser:
   app:
     jwtCookieName: kanbaniserauthcookie
-    jwtSecret: kanbanisersecret
+    jwtSecret: ==============================================test==============================================
     jwtExpirationMs: 86400000

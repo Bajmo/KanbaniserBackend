@@ -38,7 +38,7 @@ public class User {
     @Size(max = 50)
     private String email;
     @NotBlank
-    @Size(min = 6, max = 40)
+    @Size(min = 6)
     private String password;
     @NotBlank
     @Size(max = 250)
@@ -49,10 +49,14 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
-    public User(String username, String email, String password) {
+    public User(String firstName, String lastName, String phoneNumber, String username, String email, String password, String image) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.image = image;
     }
 
 }
